@@ -1,3 +1,3 @@
-# My dev repo
+# Hidden crypt of secret technomancer soceries. 
 
-Nothing to see here, stranger. 
+Enter if you dare!
