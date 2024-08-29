@@ -1,11 +1,9 @@
 const express = require('express')
 const app = express()
 
-app.use(express.static('./'))
+app.use(express.static('./public/'))
 app.get('/', function (req, res) {
-  res.sendFile('./index.html')
-  res.sendFile('./scripts/')
-  res.sendFile('./styles/')
+  res.sendFile('./public/index.html')
 })
 
 app.listen(3000)
