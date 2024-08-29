@@ -1,4 +1,4 @@
-# Welcome to my personal corkboard for the Fall 2024 Semester!
+# My personal corkboard for the Fall 2024 Semester!
 
 _There is nothing useful here._
 
