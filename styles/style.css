@@ -1,0 +1,87 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cardo&family=Eczar&display=swap');
+
+
+body {
+    text-align: center;
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages4.alphacoders.com%2F204%2Fthumb-1920-204506.jpg&f=1&nofb=1&ipt=f7b2316cd04fae9aed6d2946d2ddeda6b1e67cfa4119824e63883b65d3c8e318&ipo=images");
+    background-attachment: fixed;
+}
+
+.slogan {
+    font-family: 'Cardo', serif;
+    color: white;
+    font-style: italic;
+    text-shadow: 0.2px 2px black;
+    margin-top: -20px;
+}
+.prompt-btn{
+    background-color: rgba(240, 240, 240, .5);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.prompt-btn:hover {
+    color:white;
+    background-color: grey
+}
+
+#resultImage{
+    width: 550px;
+    height: fit-content;
+    border: silver 1px solid;
+    border-radius: 5px;
+    display: none;
+}
+#introImage{
+    border: 1px grey solid;
+    border-radius: 5px;
+    display: none;
+}
+
+#main-blur {
+    margin:100px;
+    padding: 50px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);	
+    border-radius: 70px;
+    position: relative;
+    z-index: 1;
+    background: inherit;
+    overflow: hidden;
+    font-family: 'Cardo', serif;
+}
+    
+#main-blur:before {
+    content: "";
+    position: absolute;
+    background: inherit;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 2000px rgba(0, 0, 0, .86);
+    filter: blur(10px);
+    margin: -20px;
+}
+
+#main-blur .narration {
+    color: white;
+    display: none;
+}
+
+#main-blur .dialogue {
+    color: lightblue;
+    font-style: italic;
+    text-shadow: 0.2px 0.2px white;
+    display: none;
+}
+
+#main-title {
+    margin-top:40px;
+    color: gold;
+    font-family: 'Eczar', serif;
+    font-size: 80px;
+    text-shadow: 1px 4px darkred;
+    filter: brightness(.69);
+}
