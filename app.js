@@ -10,9 +10,10 @@ console.log("App started.");
 // Serves a static site from the public directory
 app.use(express.static("public"));
 app.get("/", function (req, res) {
-  res.sendFile("/public/index.html");
+  res.status(201).sendFile("/public/index.html");
 });
 
+// Taking request from client and echoing to console and sending it back to be displayed on website.
 app.post("/", function (req, res) {
   const { message } = req.body;
   console.log(message);
@@ -22,5 +23,3 @@ app.post("/", function (req, res) {
 
 app.listen(3000);
 
-// Process for developing this functionality
-// 1. Looked up "parsing JSON from response with express"
