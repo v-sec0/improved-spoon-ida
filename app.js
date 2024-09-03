@@ -10,7 +10,7 @@ console.log("App started.");
 // Serves a static site from the public directory
 app.use(express.static("public"));
 app.get("/", function (req, res) {
-  res.status(201).sendFile("/public/index.html");
+  res.status(201).render("views/index");
 });
 
 // Taking request from client and echoing to console and sending it back to be displayed on website.
