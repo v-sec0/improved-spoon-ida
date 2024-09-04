@@ -1,13 +1,10 @@
-* {
-  font-family: "Chivo Mono", monospace;
-}
-
 body {
+  font-family: "VT323", monospace;
   background-color: grey;
 }
 
 .terminal-text {
-  color: greenyellow;
+  color: blue;
 }
 
 .title-text {
@@ -16,7 +13,8 @@ body {
 }
 
 .terminal {
-  background-color: black;
+  background-color: white;
   height: 120px;
   border-radius: 5px;
+  font-size: 20px;
 }

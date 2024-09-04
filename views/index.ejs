@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>dev-john : input</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&family=VT323&display=swap"
       rel="stylesheet"
     />
     <link
@@ -20,31 +20,40 @@
     <div style="margin-top: 25%" class="container text-center">
       <div class="row align-items-center mb-3">
         <div class="col">
-          <div class="title-text">Please Enter Text Below</div>
+          <div class="title-text">Leave a post!</div>
         </div>
       </div>
       <div class="row mb-3" novalidate>
         <div class="col">
-          <div class="input-group">
-            <input
-              id="serverMessageInput"
-              type="text"
-              class="form-control"
-              placeholder="message to server ..."
-              aria-label="message-to-server"
-              aria-describedby="send-btn"
-            />
-            <button class="btn btn-primary" type="button" id="sendBtn">
-              send
-            </button>
-          </div>
+          <input
+            id="usernameInput"
+            type="text"
+            class="form-control"
+            placeholder="enter username"
+            aria-label="username"
+          />
+        </div>
+        <div class="col">
+          <input
+            id="postInput"
+            type="text"
+            class="form-control"
+            placeholder="type post"
+            aria-label="post"
+          />
+        </div>
+        <div class="col-2">
+          <button class="btn btn-primary" type="button" id="subButton">
+            send
+          </button>
         </div>
       </div>
       <div class="row">
         <div class="col text-start terminal">
           <div class="terminal-text">
-            Server Recevied:
-            <span style="color: white" id="serverResponse">nothing yet.</span>
+            <span style="color: black" id="userEntry"> <%= username %> </span>
+            says
+            <span style="color: black" id="postEntry"> <%= post %> </span>
           </div>
         </div>
       </div>
