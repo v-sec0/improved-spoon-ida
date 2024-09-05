@@ -36,14 +36,14 @@ async function run() {
 }
 run().catch(console.dir);
 
+// ----------------------------------------------------------------------------------
 
 // Endpoint for database retrieval
 app.use(express.static("public"));
 app.get("/mongo", async (req, res) => {
   await client.connect();
   const results = await client.db("postboard").collection("posts").find({}).toArray();
-  res.render("index", {mongoResults: results})
-  console.log(results)
+  res.render("index", {mongoResults: results});
 });
 
 app.listen(process.env.PORT, () => {
