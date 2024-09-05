@@ -20,7 +20,7 @@
     <div style="margin-top: 25%" class="container text-center">
       <div class="row align-items-center mb-3">
         <div class="col">
-          <div class="title-text">Leave a post!</div>
+          <div class="title-text">Postboard v1</div>
         </div>
       </div>
       <div class="row mb-3" novalidate>
@@ -49,11 +49,10 @@
         </div>
       </div>
       <div class="row">
-        <div class="col text-start terminal">
-          <div class="terminal-text">
-            <span style="color: blue" id="userEntry"><%= username %></span>:
-            <span style="color: black" id="postEntry"><%= post %></span>
-          </div>
+        <div class="container text-start postboard">
+          <% for (let i = 0; i < mongoResults.length; i++) { %>
+            <%= mongoResults[i] %>
+          <% } %>
         </div>
       </div>
     </div>

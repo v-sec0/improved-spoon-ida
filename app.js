@@ -16,15 +16,15 @@ app.get("/", function (req, res) {
 });
 
 // Taking request from client and echoing to console and sending it back to be displayed on website.
-app.post("/", function (req, res) {
-  const { username, post } = req.body;
+// app.post("/", function (req, res) {
+//   const { username, post } = req.body;
 
-  // Get copy of entry onto server console
-  console.log("username = %s : post = %s", username, post);
+//   // Get copy of entry onto server console
+//   console.log("username = %s : post = %s", username, post);
 
-  res.send({ post: post, username: username });
-  res.end();
-});
+//   res.send({ post: post, username: username });
+//   res.end();
+// });
 
 // ------------------------------ MONGO STUFF -------------------------------------
 
@@ -54,6 +54,13 @@ async function run() {
   }
 }
 run().catch(console.dir);
+
+// Endpoint for database retrieval
+app.get("/mongo", async (req, res) => {
+  await client.connect();
+  const results = await client.db("postboard").collection("posts").find({}).toArray();
+  res.render("index", {mongoResults: results})
+});
 
 app.listen(process.env.PORT, () => {
   console.log("App started listening port %d", process.env.PORT);

@@ -3,18 +3,15 @@ body {
   background-color: grey;
 }
 
-.terminal-text {
-  color: blue;
-}
-
 .title-text {
   color: whitesmoke;
   font-size: 35px;
 }
 
-.terminal {
+.postboard {
   background-color: white;
   height: 120px;
   border-radius: 5px;
   font-size: 20px;
+  color: rgb(96, 137, 214);
 }
