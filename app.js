@@ -1,26 +1,17 @@
-const express = require('express')
-const app = express()
+require('dotenv').config()
+const express = require("express");
+const app = express();
 
+// Setting default view engine
+app.set("view engine", "ejs");
 
-console.log("App started.")
-app.set('view engine', 'ejs')
+// Allows express to parse JSON objects.
+app.use(express.json());
 
-app.use(express.static('./public/'))
-app.get('/', function (req, res) {
-  res.sendFile('./public/index.html')
-})
-
-app.get('/ejs', function (req, res) {
-  res.render('index', {
-    myServerVariable : "something"
-  });
-
-})
-
+// ------------------------------ MONGO STUFF -------------------------------------
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = process.env.uri;
-
+const uri = process.env.URI;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -46,4 +37,15 @@ async function run() {
 run().catch(console.dir);
 
 
-app.listen(3000)
+// Endpoint for database retrieval
+app.use(express.static("public"));
+app.get("/mongo", async (req, res) => {
+  await client.connect();
+  const results = await client.db("postboard").collection("posts").find({}).toArray();
+  res.render("index", {mongoResults: results})
+  console.log(results)
+});
+
+app.listen(process.env.PORT, () => {
+  console.log("App started listening port %d", process.env.PORT);
+});
