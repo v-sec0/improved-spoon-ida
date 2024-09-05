@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
   </head>
   <body>
-    <div style="margin-top: 25%" class="container text-center">
+    <div style="margin-top: 10%" class="container text-center">
       <div class="row align-items-center mb-3">
         <div class="col">
           <div class="title-text">Postboard v1</div>
@@ -48,11 +48,23 @@
           </button>
         </div>
       </div>
-      <div class="row">
-        <div class="container text-start postboard">
-          <% for (let i = 0; i < mongoResults.length; i++) { %>
-            <%= mongoResults[i] %>
-          <% } %>
+      <div class="container text-start postboard">
+        <div class="row">
+          <% let counter = 1; %>
+          <% mongoResults.forEach(result=> { %>
+            <div class="card mb-3">
+              <div class="card-header">
+                Post #<%=counter%>
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  <p><%=result.post%></p>
+                  <footer class="blockquote-footer"><%=result.username%></footer>
+                </blockquote>
+              </div>
+            </div>
+            <% counter++; %>
+          <% }); %>
         </div>
       </div>
     </div>
@@ -66,6 +78,5 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <script src="scripts/script.js"></script>
   </body>
 </html>

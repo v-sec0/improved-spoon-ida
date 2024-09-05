@@ -1,3 +1,7 @@
+* {
+  font-size: 25px;
+}
+
 body {
   font-family: "VT323", monospace;
   background-color: grey;
@@ -5,13 +9,13 @@ body {
 
 .title-text {
   color: whitesmoke;
-  font-size: 35px;
+  font-size: 55px;
 }
 
 .postboard {
   background-color: white;
   height: 120px;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 30px;
   color: rgb(96, 137, 214);
 }
