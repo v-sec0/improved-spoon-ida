@@ -13,7 +13,6 @@ app.use(express.json());
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.URI;
 
-
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
@@ -36,6 +35,7 @@ async function run() {
   }
 }
 run().catch(console.dir);
+
 
 // Endpoint for database retrieval
 app.use(express.static("public"));
