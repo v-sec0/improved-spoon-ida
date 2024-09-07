@@ -10,7 +10,7 @@ app.use(express.json());
 
 // ------------------------------ MONGO STUFF -------------------------------------
 
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const uri = process.env.URI;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -40,32 +40,36 @@ run().catch(console.dir);
 
 // ----------------------------------------------------------------------------------
 
+const postboard = client.db("postboard").collection("posts");
+
 // Endpoint for database retrieval
 app.use(express.static("public"));
 app.get("/mongo", async (req, res) => {
   await client.connect();
-  const results = await client
-    .db("postboard")
-    .collection("posts")
-    .find({})
-    .toArray();
+  const results = await postboard.find({}).toArray();
   res.render("index", { mongoResults: results });
 });
 
 app.post("/mongo", async (req, res) => {
   await client.connect();
-  const postboard = client.db("postboard").collection("posts");
   const { username, post } = req.body;
   const postObj = { username: username, post: post };
-  postboard.insertOne(postObj);
+  await postboard.insertOne(postObj);
 });
 
 app.delete("/mongo", async (req, res) => {
   await client.connect();
-  const postboard = client.db("postboard").collection("posts");
   const { username, post } = req.body;
   const postObj = { username: username, post: post };
-  postboard.deleteMany(postObj);
+  await postboard.deleteMany(postObj);
+});
+
+app.put("/mongo", async (req, res) => {
+  await client.connect();
+  const { username, post } = req.body;
+  const updateReq = { username: username };
+  const updateObj = { $set: { post: post } };
+  await postboard.updateOne(updateReq, updateObj);
 });
 
 app.listen(process.env.PORT, () => {
