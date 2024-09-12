@@ -50,7 +50,7 @@ app.get("/mongo", async (req, res) => {
   res.render("index", { mongoResults: results });
 });
 
-app.post("/mongo", async (req, res) => {
+app.get("/insert", async (req, res) => {
   await client.connect();
   const { username, post } = req.body;
   const postObj = { username: username, post: post };

@@ -48,40 +48,6 @@
               Send
             </button>
           </div>
-          <div class="col">
-            <button class="btn btn-secondary" type="button" id="refButton">
-              Refresh
-            </button>
-          </div>
-          <div class="col">
-            <button class="btn btn-danger" type="button" id="delButton">
-              Delete
-            </button>
-          </div>
-          <div class="col">
-            <button class="btn btn-warning" type="button" id="updateButton">
-              Update
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="container text-start">
-        <div class="row justify-content-evenly">
-          <% let counter = 1; %> <% mongoResults.forEach(result=> { %>
-          <div class="col-6">
-            <div class="card mb-3">
-              <div class="card-header">Post ID: <%=result._id%></div>
-              <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                  <p><%=result.post%></p>
-                  <footer class="blockquote-footer">
-                    <%=result.username%>
-                  </footer>
-                </blockquote>
-              </div>
-            </div>
-          </div>
-          <% counter++; %> <% }); %>
         </div>
       </div>
     </div>
