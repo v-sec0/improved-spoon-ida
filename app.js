@@ -44,19 +44,32 @@ const postboard = client.db("postboard").collection("posts");
 
 // Endpoint for database retrieval
 app.use(express.static("public"));
-app.get("/mongo", async (req, res) => {
+app.get("/", async (req, res) => {
   await client.connect();
   const results = await postboard.find({}).toArray();
   res.render("index", { mongoResults: results });
 });
 
-app.get("/insert", async (req, res) => {
+app.get("/insert",async (req, res) => {
+  await client.connect();
+  const results = await postboard.find({}).toArray();
+  res.render("insert", { mongoResults: results });
+});
+
+app.get("/update", (req, res) => {
+  res.render('update')
+})
+
+app.get("/delete", (req, res) => {
+  res.render("delete")
+})
+
+app.post("/insert", async (req, res) => {
   await client.connect();
   const { username, post } = req.body;
   const postObj = { username: username, post: post };
   await postboard.insertOne(postObj);
-});
-
+})
 app.delete("/mongo", async (req, res) => {
   await client.connect();
   const { username, post } = req.body;
@@ -69,7 +82,7 @@ app.put("/mongo", async (req, res) => {
   const { username, post } = req.body;
   const updateReq = { username: username };
   const updateObj = { $set: { post: post } };
-  await postboard.updateOne(updateReq, updateObj);
+  await postboard.findOneAndUpdate(updateReq, updateObj);
 });
 
 app.listen(process.env.PORT, () => {

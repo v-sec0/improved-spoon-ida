@@ -20,13 +20,23 @@
     <div style="margin-top: 10%" class="container text-center">
       <div class="row align-items-center mb-3">
         <div class="col">
-          <div class="title-text">Postboard v3</div>
+          <div class="title-text">Postboard v3 (Delete)</div>
         </div>
       </div>
       <div class="row mb-3">
         <div class="col">
           <button class="btn btn-primary" type="button" id="subButton">
-            Insert Post
+            Insert
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-warning" type="button" id="updateButton">
+            Update
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-danger" type="button" id="delButton">
+            Delete
           </button>
         </div>
       </div>
@@ -43,8 +53,6 @@
                     <%=result.username%>
                   </footer>
                 </blockquote>
-                <a href="#" class="btn btn-warning">Update</a>
-                <a href="#" class="btn btn-danger">Delete</a>
               </div>
             </div>
           </div>
