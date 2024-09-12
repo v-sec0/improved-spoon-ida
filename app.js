@@ -44,7 +44,7 @@ const postboard = client.db("postboard").collection("posts");
 
 // Endpoint for database retrieval
 app.use(express.static("public"));
-app.get("/", async (req, res) => {
+app.get("/mongo", async (req, res) => {
   await client.connect();
   const results = await postboard.find({}).toArray();
   res.render("index", { mongoResults: results });
