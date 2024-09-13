@@ -43,6 +43,7 @@ run().catch(console.dir);
 // ----------------------------------------------------------------------------------
 
 const postboard = client.db("postboard").collection("posts");
+const title = "Postboard v4"
 
 // Endpoint for database retrieval
 
@@ -51,13 +52,13 @@ app.use(express.static("public"));
 app.get("/", async (req, res) => {
   await client.connect();
   const results = await postboard.find({}).toArray();
-  await res.render("index", { mongoResults: results});
+  await res.render("index", { mongoResults: results, postBoardTitle: title });
 });
 
 app.get("/insert",async (req, res) => {
   await client.connect();
   const results = await postboard.find({}).toArray();
-  await res.render("insert", { mongoResults: results});
+  await res.render("insert", { mongoResults: results, postBoardTitle: title});
 });
 
 app.get("/update/:postID", async (req, res) => {
@@ -66,7 +67,7 @@ app.get("/update/:postID", async (req, res) => {
   const results = await postboard.find({ _id: ObjectId.createFromHexString(postIdent) }).toArray()
   const usernameStr = results[0].username
   const postStr = results[0].post
-  await res.render("update", {postID: postIdent, username: usernameStr, post: postStr})
+  await res.render("update", {postID: postIdent, username: usernameStr, post: postStr, postBoardTitle: title})
 })
 
 app.get("/delete/:postID", async (req, res) => {
