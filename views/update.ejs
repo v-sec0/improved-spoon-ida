@@ -14,42 +14,54 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/style.css" />
   </head>
   <body>
     <div style="margin-top: 10%" class="container text-center">
       <div class="row align-items-center mb-3">
         <div class="col">
           <div class="title-text">Postboard v3 (Update)</div>
+          <p>You are currently updating Post ID: <%=postID%></p>
         </div>
       </div>
-      <div class="row mb-3 justify-content-evenly">
+      <form class="row mb-3 needs-validation" action="/update/<%=postID%>" method="POST" novalidate>
         <div class="col-6">
           <input
             id="usernameInput"
             type="text"
             class="form-control"
-            placeholder="Username"
-            aria-label="username"
+            placeholder="<%=username%>"
+            name="username"
+            required
           />
+          <div class="invalid-feedback">
+            Please choose a username.
+          </div>
         </div>
         <div class="col-6">
           <input
             id="postInput"
             type="text"
             class="form-control"
-            placeholder="Enter Post"
-            aria-label="post"
+            placeholder="<%=post%>"
+            name="post"
+            required
           />
-        </div>
-        <div class="row mt-3">
-          <div class="col">
-            <button class="btn btn-primary" type="button" id="subButton">
-              Submit
-            </button>
+          <div class="invalid-feedback">
+            Enter a post.
           </div>
         </div>
-      </div>
+        <div class="row mt-3 mb-3">
+          <div class="col">
+            <button class="btn btn-primary" id="submitButton" type="submit">
+              Send
+            </button>
+          </div>
+          <div class="col">
+            <a href="/" class="btn btn-secondary">Go back to Postboard</a>
+          </div>
+        </div>
+      </form>
     </div>
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"

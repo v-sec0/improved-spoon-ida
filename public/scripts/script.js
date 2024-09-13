@@ -1,70 +1,89 @@
 jQuery(() => {
   console.log("Ready to rumble!");
+  (() => {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = $('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+  
+        form.classList.add('was-validated')
+        $("#submitButton").html("Submitted!")
+      }, false)
+    })
+  })()
 
-  // Creating variables for functions
-  const submissionButton = $("#subButton");
-  const usernameInput = $("#usernameInput");
-  const postInput = $("#postInput");
-  const refreshButton = $("#refButton");
-  const delButton = $("#delButton");
-  const updateButton = $("#updateButton");
+  // // Creating variables for functions
+  // const submissionButton = $("#subButton");
+  // const usernameInput = $("#usernameInput");
+  // const postInput = $("#postInput");
+  // const refreshButton = $("#refButton");
+  // const delButton = $("#delButton");
+  // const updateButton = $("#updateButton");
 
-  // Creating an event listener for the button click
-  submissionButton.on("click", async () => {
-    // Checking for value in input fields before submission
-    if (usernameInput && usernameInput.val()) {
-      if (postInput && postInput.val()) {
-        // Getting values
-        let userVal = usernameInput.val();
-        let postVal = postInput.val();
+  // // Creating an event listener for the button click
+  // submissionButton.on("click", async () => {
+  //   // Checking for value in input fields before submission
+  //   if (usernameInput && usernameInput.val()) {
+  //     if (postInput && postInput.val()) {
+  //       // Getting values
+  //       let userVal = usernameInput.val();
+  //       let postVal = postInput.val();
 
-        // Sending POST request to add values to DB
-        await fetch("/mongo", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username: userVal, post: postVal }),
-        });
-      }
-    }
-  });
+  //       // Sending POST request to add values to DB
+  //       await fetch("/mongo", {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify({ username: userVal, post: postVal }),
+  //       });
+  //     }
+  //   }
+  // });
 
-  refreshButton.on("click", () => {
-    location.reload();
-  });
+  // refreshButton.on("click", () => {
+  //   location.reload();
+  // });
 
-  delButton.on("click", async () => {
-    // Checking for value in input fields before submission
-    if (usernameInput && usernameInput.val()) {
-      if (postInput && postInput.val()) {
-        // Getting values
-        let userVal = usernameInput.val();
-        let postVal = postInput.val();
+  // delButton.on("click", async () => {
+  //   // Checking for value in input fields before submission
+  //   if (usernameInput && usernameInput.val()) {
+  //     if (postInput && postInput.val()) {
+  //       // Getting values
+  //       let userVal = usernameInput.val();
+  //       let postVal = postInput.val();
 
-        // Sending POST request to add values to DB
-        await fetch("/mongo", {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username: userVal, post: postVal }),
-        });
-      }
-    }
-  });
+  //       // Sending POST request to add values to DB
+  //       await fetch("/mongo", {
+  //         method: "DELETE",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify({ username: userVal, post: postVal }),
+  //       });
+  //     }
+  //   }
+  // });
 
-  updateButton.on("click", async () => {
-    // Checking if input fields are populated
-    if (usernameInput && usernameInput.val()) {
-      if (postInput && postInput.val()) {
-        // Getting values
-        let userVal = usernameInput.val();
-        let postVal = postInput.val();
+  // updateButton.on("click", async () => {
+  //   // Checking if input fields are populated
+  //   if (usernameInput && usernameInput.val()) {
+  //     if (postInput && postInput.val()) {
+  //       // Getting values
+  //       let userVal = usernameInput.val();
+  //       let postVal = postInput.val();
 
-        // Sending PUT request to updat values in DB
-        await fetch("/mongo", {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username: userVal, post: postVal }),
-        });
-      }
-    }
-  });
+  //       // Sending PUT request to updat values in DB
+  //       await fetch("/mongo", {
+  //         method: "PUT",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify({ username: userVal, post: postVal }),
+  //       });
+  //     }
+  //   }
+  // });
 });

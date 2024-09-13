@@ -25,9 +25,7 @@
       </div>
       <div class="row mb-3">
         <div class="col">
-          <button class="btn btn-primary" type="button" id="subButton">
-            Insert Post
-          </button>
+          <a href="/insert" class="btn btn-primary">Insert Post</a>
         </div>
       </div>
       <div class="container text-start">
@@ -43,8 +41,8 @@
                     <%=result.username%>
                   </footer>
                 </blockquote>
-                <a href="#" class="btn btn-warning">Update</a>
-                <a href="#" class="btn btn-danger">Delete</a>
+                <a href="/update/<%=result._id%>" class="btn btn-warning">Update</a>
+                <a href="/delete/<%=result._id%>" class="btn btn-danger">Delete</a>
               </div>
             </div>
           </div>

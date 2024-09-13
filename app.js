@@ -1,6 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Setting default view engine
 app.set("view engine", "ejs");
@@ -43,25 +45,37 @@ run().catch(console.dir);
 const postboard = client.db("postboard").collection("posts");
 
 // Endpoint for database retrieval
+
 app.use(express.static("public"));
+
 app.get("/", async (req, res) => {
   await client.connect();
   const results = await postboard.find({}).toArray();
-  res.render("index", { mongoResults: results });
+  await res.render("index", { mongoResults: results});
 });
 
 app.get("/insert",async (req, res) => {
   await client.connect();
   const results = await postboard.find({}).toArray();
-  res.render("insert", { mongoResults: results });
+  await res.render("insert", { mongoResults: results});
 });
 
-app.get("/update", (req, res) => {
-  res.render('update')
+app.get("/update/:postID", async (req, res) => {
+  const postIdent = req.params.postID
+  await client.connect()
+  const results = await postboard.find({ _id: ObjectId.createFromHexString(postIdent) }).toArray()
+  const usernameStr = results[0].username
+  const postStr = results[0].post
+  await res.render("update", {postID: postIdent, username: usernameStr, post: postStr})
 })
 
-app.get("/delete", (req, res) => {
-  res.render("delete")
+app.get("/delete/:postID", async (req, res) => {
+  console.log("Post ID " + req.params.postID + " flagged for deletion!")
+  await client.connect();
+  await postboard.deleteOne({
+    _id: ObjectId.createFromHexString(req.params.postID)
+  });
+  res.redirect('/');
 })
 
 app.post("/insert", async (req, res) => {
@@ -69,21 +83,23 @@ app.post("/insert", async (req, res) => {
   const { username, post } = req.body;
   const postObj = { username: username, post: post };
   await postboard.insertOne(postObj);
+  res.redirect('/')
 })
-app.delete("/mongo", async (req, res) => {
-  await client.connect();
-  const { username, post } = req.body;
-  const postObj = { username: username, post: post };
-  await postboard.deleteMany(postObj);
-});
 
-app.put("/mongo", async (req, res) => {
-  await client.connect();
-  const { username, post } = req.body;
-  const updateReq = { username: username };
-  const updateObj = { $set: { post: post } };
-  await postboard.findOneAndUpdate(updateReq, updateObj);
-});
+app.post("/update/:postID", async (req, res) => {
+  const postID = ObjectId.createFromHexString(req.params.postID)
+  await client.connect()
+  const {username, post} = req.body
+  const filter = {_id: postID}
+  const update = {
+    $set: {
+      username: username,
+      post: post
+    }
+  }
+  await postboard.updateOne(filter,update)
+  res.redirect("/")
+})
 
 app.listen(process.env.PORT, () => {
   console.log("App started listening port %d", process.env.PORT);

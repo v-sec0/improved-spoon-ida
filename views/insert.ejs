@@ -23,35 +23,41 @@
           <div class="title-text">Postboard v3 (Insert)</div>
         </div>
       </div>
-      <form class="row mb-3 justify-content-evenly">
+      <form class="row mb-3 needs-validation" action="/insert" method="POST" novalidate>
         <div class="col-6">
           <input
             id="usernameInput"
             type="text"
             class="form-control"
             placeholder="Username"
-            aria-label="username"
+            name="username"
+            required
           />
+          <div class="invalid-feedback">
+            Please choose a username.
+          </div>
         </div>
         <div class="col-6">
           <input
             id="postInput"
             type="text"
             class="form-control"
-            placeholder="Enter Post"
-            aria-label="post"
+            placeholder="Post"
+            name="post"
+            required
           />
+          <div class="invalid-feedback">
+            Enter a post.
+          </div>
         </div>
         <div class="row mt-3 mb-3">
           <div class="col">
-            <button class="btn btn-primary" type="button" id="subButton">
+            <button class="btn btn-primary" id="submitButton" type="submit">
               Send
             </button>
           </div>
           <div class="col">
-            <button class="btn btn-secondary" type="button" id="subButton">
-              Go back to Postboard
-            </button>
+            <a href="/" class="btn btn-secondary">Go back to Postboard</a>
           </div>
         </div>
         <div class="container text-start">
@@ -85,5 +91,6 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script src="scripts/script.js"></script>
   </body>
 </html>
