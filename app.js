@@ -43,7 +43,7 @@ run().catch(console.dir);
 // ----------------------------------------------------------------------------------
 
 const postboard = client.db("postboard").collection("posts");
-const title = "Postboard v4"
+const title = "Postboard v5"
 
 // Endpoint for database retrieval
 
