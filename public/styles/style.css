@@ -19,3 +19,7 @@ body {
   font-size: 30px;
   color: rgb(96, 137, 214);
 }
+
+a:hover{
+  filter:brightness(95%);
+}
