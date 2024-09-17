@@ -15,6 +15,7 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
   </head>
   <body>
@@ -33,7 +34,7 @@
         <div class="row justify-content-evenly">
           <% let counter = 1; %> <% mongoResults.forEach(result=> { %>
           <div class="col-6">
-            <div class="card mb-3">
+            <div class="card mb-3" data-aos="fade-up">
               <div class="card-header">Post ID: <%=result._id%></div>
               <div class="card-body">
                 <blockquote class="blockquote mb-0">
@@ -61,5 +62,9 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>
