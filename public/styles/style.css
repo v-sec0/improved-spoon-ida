@@ -23,3 +23,7 @@ body {
 a:hover{
   filter:brightness(95%);
 }
+
+[contenteditable] {
+  outline: 0px solid transparent;
+}

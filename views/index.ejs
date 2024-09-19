@@ -34,17 +34,17 @@
         <div class="row justify-content-evenly">
           <% let counter = 1; %> <% mongoResults.forEach(result=> { %>
           <div class="col-6">
-            <div class="card mb-3" data-aos="fade-up">
+            <div class="card mb-3" data-aos="fade-up" data-bs-theme="light" id="postcard-<%=result._id%>">
               <div class="card-header">Post ID: <%=result._id%></div>
               <div class="card-body">
                 <blockquote class="blockquote mb-0">
-                  <p><%=result.post%></p>
-                  <footer class="blockquote-footer">
+                  <p contenteditable="false" id="post-<%=result._id%>" class="<%=result._id%>"><%=result.post%></p>
+                  <footer class="blockquote-footer <%=result._id%>" contenteditable="false"  id="user-<%=result._id%>">
                     <%=result.username%>
                   </footer>
                 </blockquote>
-                <a href="/update/<%=result._id%>" class="btn btn-warning">Update</a>
-                <a href="/delete/<%=result._id%>" class="btn btn-danger">Delete</a>
+                <button onclick="updatePost('<%=result._id%>')" class="btn btn-warning" id="upd-<%=result._id%>">Update</button>
+                <a href="/delete/<%=result._id%>" class="btn btn-danger" id="del-<%=result._id%>">Delete</a>
               </div>
             </div>
           </div>
@@ -66,5 +66,8 @@
     <script>
       AOS.init();
     </script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/update.js"></script>
+    <script src="scripts/submit.js"></script>
   </body>
 </html>

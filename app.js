@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 // Allows express to parse JSON objects.
-app.use(express.json());
+app.use(bodyParser.json());
 
 // ------------------------------ MONGO STUFF -------------------------------------
 
@@ -61,15 +61,6 @@ app.get("/insert",async (req, res) => {
   res.render("insert", { mongoResults: results, postBoardTitle: title});
 });
 
-app.get("/update/:postID", async (req, res) => {
-  const postIdent = req.params.postID
-  await client.connect()
-  const results = await postboard.find({ _id: ObjectId.createFromHexString(postIdent) }).toArray()
-  const usernameStr = results[0].username
-  const postStr = results[0].post
-  res.render("update", {postID: postIdent, username: usernameStr, post: postStr, postBoardTitle: title})
-})
-
 app.get("/delete/:postID", async (req, res) => {
   console.log("Post ID " + req.params.postID + " flagged for deletion!")
   await client.connect();
@@ -87,19 +78,18 @@ app.post("/insert", async (req, res) => {
   res.redirect('/')
 })
 
-app.post("/update/:postID", async (req, res) => {
-  const postID = ObjectId.createFromHexString(req.params.postID)
-  await client.connect()
-  const {username, post} = req.body
-  const filter = {_id: postID}
-  const update = {
+app.post("/update", async (req, res) => {
+  await client.connect();
+  const {id, username, post } = req.body;
+  const updObj = { 
     $set: {
-      username: username,
+      username: username, 
       post: post
-    }
-  }
-  await postboard.updateOne(filter,update)
-  res.redirect("/")
+    } 
+  };
+  const filter = {_id: ObjectId.createFromHexString(id)};
+  await postboard.updateOne(filter, updObj);
+  res.redirect('/')
 })
 
 app.listen(process.env.PORT, () => {
