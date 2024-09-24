@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>postboard v1</title>
+    <title><%=postBoardTitle%></title>
+    <link rel="icon" href="styles/img/postboard.ico" type="image/icon type">
     <link
       href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&family=VT323&display=swap"
       rel="stylesheet"
@@ -14,57 +15,40 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
   </head>
   <body>
     <div style="margin-top: 10%" class="container text-center">
       <div class="row align-items-center mb-3">
         <div class="col">
-          <div class="title-text">Postboard v1</div>
+          <div class="title-text"><%=postBoardTitle%></div>
         </div>
       </div>
-      <div class="row mb-3" novalidate>
+      <div class="row mb-3">
         <div class="col">
-          <input
-            id="usernameInput"
-            type="text"
-            class="form-control"
-            placeholder="enter username"
-            aria-label="username"
-          />
-        </div>
-        <div class="col">
-          <input
-            id="postInput"
-            type="text"
-            class="form-control"
-            placeholder="type post"
-            aria-label="post"
-          />
-        </div>
-        <div class="col-2">
-          <button class="btn btn-primary" type="button" id="subButton">
-            send
-          </button>
+          <a href="/insert" class="btn btn-primary">Insert Post</a>
         </div>
       </div>
-      <div class="container text-start postboard">
-        <div class="row">
-          <% let counter = 1; %>
-          <% mongoResults.forEach(result=> { %>
-            <div class="card mb-3">
-              <div class="card-header">
-                Post #<%=counter%>
-              </div>
+      <div class="container text-start">
+        <div class="row justify-content-evenly">
+          <% let counter = 1; %> <% mongoResults.forEach(result=> { %>
+          <div class="col-6">
+            <div class="card mb-3" data-aos="fade-up" data-bs-theme="light" id="postcard-<%=result._id%>">
+              <div class="card-header">Post ID: <%=result._id%></div>
               <div class="card-body">
                 <blockquote class="blockquote mb-0">
-                  <p><%=result.post%></p>
-                  <footer class="blockquote-footer"><%=result.username%></footer>
+                  <p contenteditable="false" id="post-<%=result._id%>" class="<%=result._id%>"><%=result.post%></p>
+                  <footer class="blockquote-footer <%=result._id%>" contenteditable="false"  id="user-<%=result._id%>">
+                    <%=result.username%>
+                  </footer>
                 </blockquote>
+                <button onclick="updatePost('<%=result._id%>')" class="btn btn-warning" id="upd-<%=result._id%>">Update</button>
+                <a href="/delete/<%=result._id%>" class="btn btn-danger" id="del-<%=result._id%>">Delete</a>
               </div>
             </div>
-            <% counter++; %>
-          <% }); %>
+          </div>
+          <% counter++; %> <% }); %>
         </div>
       </div>
     </div>
@@ -78,5 +62,12 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/update.js"></script>
+    <script src="scripts/submit.js"></script>
   </body>
 </html>
