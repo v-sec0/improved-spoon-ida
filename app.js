@@ -52,13 +52,13 @@ app.use(express.static("public"));
 app.get("/", async (req, res) => {
   await client.connect();
   const results = await postboard.find({}).toArray();
-  res.render("index", { mongoResults: results, postBoardTitle: title });
+  res.render("index", { mongoResults: results.reverse(), postBoardTitle: title });
 });
 
 app.get("/insert",async (req, res) => {
   await client.connect();
   const results = await postboard.find({}).toArray();
-  res.render("insert", { mongoResults: results, postBoardTitle: title});
+  res.render("insert", { mongoResults: results.reverse(), postBoardTitle: title});
 });
 
 app.get("/delete/:postID", async (req, res) => {
