@@ -14,6 +14,8 @@ jQuery(() => {
           event.stopPropagation()
         }
   
+        
+
         form.classList.add('was-validated')
         $("#submitButton").html("Submitted!")
       }, false)
