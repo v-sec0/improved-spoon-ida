@@ -7,9 +7,14 @@ body {
   background-color: grey;
 }
 
+
 .title-text {
   color: whitesmoke;
-  font-size: 55px;
+  font-size: 80px;
+}
+
+.subtitle-text {
+  font-size: 35px;
 }
 
 .postboard {
@@ -26,4 +31,10 @@ a:hover{
 
 [contenteditable] {
   outline: 0px solid transparent;
+}
+
+.surround {
+  background-color: white;
+  border-radius: 100%;
+  border: 4px white solid;
 }

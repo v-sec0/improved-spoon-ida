@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%=postBoardTitle%></title>
     <link rel="icon" href="styles/img/postboard.ico" type="image/icon type">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&family=VT323&display=swap"
       rel="stylesheet"
@@ -23,13 +24,43 @@
       <div class="row align-items-center mb-3">
         <div class="col">
           <div class="title-text"><%=postBoardTitle%></div>
+          <p class="subtitle-text">Welcome, <%=fullname %>!</p>
         </div>
       </div>
       <div class="row mb-3">
         <div class="col">
-          <a href="/insert" class="btn btn-primary">Insert Post</a>
+          <!-- Modal Trigger Button -->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insertModal">Insert Post</button>
+          <a href="/logout" class="btn btn-danger"><span class="material-symbols-outlined">
+            logout
+            </span></a>
+          <!-- Modal -->
+          <div class="modal fade" id="insertModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <form  class="needs-validation" action="/insert" method="post" novalidate>
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Insert Post</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body row">
+                    <div class="mb-3 col input-group">
+                      <span class="input-group-text" id="post-addon">Post</span>
+                      <input type="text" class="form-control" name="post" placeholder="Post" aria-label="Post" aria-describedby="post-addon">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Understood</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- Postboard Display -->
       <div class="container text-start">
         <div class="row justify-content-evenly">
           <% let counter = 1; %> <% mongoResults.forEach(result=> { %>
@@ -43,8 +74,14 @@
                     <%=result.username%>
                   </footer>
                 </blockquote>
-                <button onclick="updatePost('<%=result._id%>')" class="btn btn-warning" id="upd-<%=result._id%>">Update</button>
-                <a href="/delete/<%=result._id%>" class="btn btn-danger" id="del-<%=result._id%>">Delete</a>
+                <button onclick="updatePost('<%=result._id%>')" class="btn btn-warning" id="upd-<%=result._id%>">
+                  <span class="material-symbols-outlined">
+                  edit_note
+                  </span>
+                </button>
+                <a href="/delete/<%=result._id%>" class="btn btn-danger" id="del-<%=result._id%>"><span class="material-symbols-outlined">
+                  delete
+                  </span></a>
               </div>
             </div>
           </div>
