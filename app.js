@@ -46,7 +46,7 @@ const client = new MongoClient(uri, {
 // ----------------------------------------------------------------------------------
 
 const postboard = client.db("postboard").collection("posts");
-const title = "Postboard v7"
+const title = "Postboard v9"
 
 function isLoggedIn(req, res, next) {
   req.user ? next() : res.redirect('/login');
