@@ -42,6 +42,8 @@ run().catch(console.dir);
 
 // ----------------------------------------------------------------------------------
 
+const PORT = process.env.PORT || 5000;
+
 const postboard = client.db("postboard").collection("posts");
 const title = "Postboard v7"
 
@@ -92,6 +94,6 @@ app.post("/update", async (req, res) => {
   res.redirect('/')
 })
 
-app.listen(process.env.PORT, () => {
-  console.log("App started listening port %d", process.env.PORT);
+app.listen(PORT, () => {
+  console.log("App started listening port %d", PORT);
 });
