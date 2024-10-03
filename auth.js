@@ -19,7 +19,7 @@ const client = new MongoClient(uri, {
 passport.use(new GoogleStrategy({
     clientID:     GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:5000/google/callback",
+    callbackURL: "https://improved-spoon-ida.onrender.com/google/callback",
     passReqToCallback   : true
   },
   function(request, accessToken, refreshToken, profile, done) {
