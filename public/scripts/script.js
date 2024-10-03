@@ -1,28 +1,24 @@
-$(document).ready(function () {
-  const submitButton = $("#sendBtn");
-  const clientMessageBox = $("#serverMessageInput");
-  const serverTerminal = $("#serverResponse");
+jQuery(() => {
+  console.log("Ready to rumble!");
+  (() => {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = $('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+  
+        
 
-  submitButton.on("click", () => {
-    console.log("Button clicked!");
-
-    // Turning input into variable
-    let clientMessage = { message: clientMessageBox.val() };
-
-    // Making POST request options
-    const responseOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(clientMessage), // Need this because the message is JSON
-    };
-
-    // Getting response from server and using that to replace terminal message.
-    fetch("/", responseOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        serverTerminal.html(data.messageRecieved);
-      });
-  });
+        form.classList.add('was-validated')
+        $("#submitButton").html("Submitted!")
+      }, false)
+    })
+  })()
 });
