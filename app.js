@@ -1,7 +1,17 @@
+// Constants and Requirements
 require("dotenv").config();
+
+// Express, bodyParser
 const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
+const PORT = process.env.PORT || 5000;
+
+// Personal
+require('./auth');
+const passport = require('passport');
+const session = require('express-session');
+// ---------------------------------------------------
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Setting default view engine
@@ -9,6 +19,15 @@ app.set("view engine", "ejs");
 
 // Allows express to parse JSON objects.
 app.use(bodyParser.json());
+
+// Allows session support for passport
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+ }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // ------------------------------ MONGO STUFF -------------------------------------
 
@@ -24,46 +43,42 @@ const client = new MongoClient(uri, {
   },
 });
 
-async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
-    );
-  } finally {
-    // Ensures that the client will close when you finish/error
-  //   await client.close();
-  }
-}
-run().catch(console.dir);
-
 // ----------------------------------------------------------------------------------
-
-const PORT = process.env.PORT || 5000;
 
 const postboard = client.db("postboard").collection("posts");
 const title = "Postboard v7"
+
+function isLoggedIn(req, res, next) {
+  req.user ? next() : res.redirect('/login');
+}
 
 // Endpoint for database retrieval
 
 app.use(express.static("public"));
 
-app.get("/", async (req, res) => {
+app.get("/login", (req, res) => {
+    res.render("login", { postBoardTitle: title });
+})
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['email', 'profile'] })
+);
+
+app.get('/google/callback',
+  passport.authenticate('google', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+  })
+);
+
+app.get("/", isLoggedIn, async (req, res) => {
   await client.connect();
   const results = await postboard.find({}).toArray();
-  res.render("index", { mongoResults: results.reverse(), postBoardTitle: title });
+  const name = req.user.name.givenName
+  res.render("index", { mongoResults: results.reverse(), postBoardTitle: title, fullname: name });
 });
 
-app.get("/insert",async (req, res) => {
-  await client.connect();
-  const results = await postboard.find({}).toArray();
-  res.render("insert", { mongoResults: results.reverse(), postBoardTitle: title});
-});
-
-app.get("/delete/:postID", async (req, res) => {
+app.get("/delete/:postID", isLoggedIn, async (req, res) => {
   console.log("Post ID " + req.params.postID + " flagged for deletion!")
   await client.connect();
   await postboard.deleteOne({
@@ -72,28 +87,37 @@ app.get("/delete/:postID", async (req, res) => {
   res.redirect('/');
 })
 
-app.post("/insert", async (req, res) => {
+app.post("/insert", isLoggedIn, async (req, res) => {
   await client.connect();
-  const { username, post } = req.body;
-  const postObj = { username: username, post: post };
+  let post = req.body.post;
+  let name = req.user.name.givenName
+  const postObj = { username: name, post: post };
   await postboard.insertOne(postObj);
   res.redirect('/')
 })
 
-app.post("/update", async (req, res) => {
+app.post("/update", isLoggedIn, async (req, res) => {
   await client.connect();
-  const {id, username, post } = req.body;
-  const updObj = { 
+  const { id, username, post } = req.body;
+  const updObj = {
     $set: {
-      username: username, 
+      username: username,
       post: post
-    } 
+    }
   };
-  const filter = {_id: ObjectId.createFromHexString(id)};
+  const filter = { _id: ObjectId.createFromHexString(id) };
   await postboard.updateOne(filter, updObj);
   res.redirect('/')
-})
+});
 
-app.listen(PORT, () => {
-  console.log("App started listening port %d", PORT);
+app.get('/logout', function(req, res, next) {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+});
+
+app.listen(PORT,
+  () => {
+    console.log("App started listening port %d", PORT);
 });
