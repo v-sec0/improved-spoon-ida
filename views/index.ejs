@@ -62,8 +62,8 @@
       <!-- Postboard Display -->
       <div class="container text-start">
         <div class="row justify-content-evenly">
-          <% let counter = 1; %> <% mongoResults.forEach(result=> { %>
-          <div class="col-6">
+          <% mongoResults.forEach(result=> { %>
+          <div class="col-md-6">
             <div class="card mb-3" data-aos="fade-up" data-bs-theme="light" id="postcard-<%=result._id%>">
               <div class="card-header" id="postheader-<%=result._id%>">Post ID: <%=result._id%></div>
               <div class="card-body">
@@ -80,11 +80,12 @@
                 </button>
                 <a href="/delete/<%=result._id%>" class="btn btn-danger" id="del-<%=result._id%>"><span class="material-symbols-outlined">
                   delete
-                  </span></a>
+                  </span>
+                </a>
               </div>
             </div>
           </div>
-          <% counter++; %> <% }); %>
+          <% }); %>
         </div>
       </div>
     </div>

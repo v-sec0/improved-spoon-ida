@@ -2,6 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET; 
+const CALLBACK_URL = process.env.CALLBACK_URL;
 
 // Mongo Stuff
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
@@ -19,7 +20,7 @@ const client = new MongoClient(uri, {
 passport.use(new GoogleStrategy({
     clientID:     GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://improved-spoon-ida.onrender.com/google/callback",
+    callbackURL: CALLBACK_URL,
     passReqToCallback   : true
   },
   function(request, accessToken, refreshToken, profile, done) {

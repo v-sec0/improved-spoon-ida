@@ -4,7 +4,7 @@ function updatePost(postId) {
     $(`.${postId}`).attr('contenteditable', 'true'); 
 
     // Chaning to submit button
-    $(`#upd-${postId}`).html("Submit");
+    $(`#upd-${postId}`).html("Update");
     $(`#upd-${postId}`).addClass("btn-success");
     $(`#upd-${postId}`).removeClass("btn-warning");
     $(`#upd-${postId}`).attr("onclick", `submitNewPost("${postId}")`); 
@@ -14,8 +14,9 @@ function updatePost(postId) {
     $(`#del-${postId}`).attr("href", "/"); 
 
     // Changing the postcard color
-    $(`#postcard-${postId}`).addClass("text-bg-warning");
-    $(`#postheader-${postId}`).html("EDIT MODE")
+    $(`#postcard-${postId}`).addClass("border-warning");
+    $(`#postcard-${postId}`).addClass("text-bg-dark");
+    $(`#postheader-${postId}`).html("⚠️ EDIT MODE ⚠️")
 };
 
 
