@@ -4,13 +4,18 @@
 <h1 align="center">
    Postboard
 </h1>
+<div align="center">
+  <img src="https://img.shields.io/github/last-commit/v-sec0/improved-spoon-ida"/>
+  <img src="https://img.shields.io/github/issues-closed/v-sec0/improved-spoon-ida.svg"
+</div>
 <p align="center">
-  a simple postboard web application that let's users post semi-anonymous messages.
+  a simple postboard web application that let's users post messages.
 </p>
 <p align="center">
   ❤️ made possible by ❤️
 </p>
 <div align="center">
+  <img src="https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white"/>
   <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"/>
   <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white"/>
   <img src="https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white"/>
