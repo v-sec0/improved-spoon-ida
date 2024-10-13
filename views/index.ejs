@@ -78,10 +78,10 @@
                   edit_note
                   </span>
                 </button>
-                <a href="/delete/<%=result._id%>" class="btn btn-danger" id="del-<%=result._id%>"><span class="material-symbols-outlined">
+                <button onclick="deletePost('<%=result._id%>')" class="btn btn-danger" id="del-<%=result._id%>"><span class="material-symbols-outlined">
                   delete
                   </span>
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -106,5 +106,6 @@
     <script src="scripts/script.js"></script>
     <script src="scripts/update.js"></script>
     <script src="scripts/submit.js"></script>
+    <script src="scripts/delete.js"></script>
   </body>
 </html>

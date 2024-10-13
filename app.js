@@ -81,7 +81,7 @@ app.get("/", isLoggedIn, async (req, res) => {
   res.render("index", { mongoResults: results.reverse(), postBoardTitle: title, fullname: name });
 });
 
-app.get("/delete/:postID", isLoggedIn, async (req, res) => {
+app.delete("/delete/:postID", isLoggedIn, async (req, res) => {
   console.log("Post ID " + req.params.postID + " flagged for deletion!")
   await client.connect();
   await postboard.deleteOne({
@@ -99,7 +99,7 @@ app.post("/insert", isLoggedIn, async (req, res) => {
   res.redirect('/')
 })
 
-app.post("/update", isLoggedIn, async (req, res) => {
+app.put("/update", isLoggedIn, async (req, res) => {
   await client.connect();
   const { id, username, post } = req.body;
   const updObj = {

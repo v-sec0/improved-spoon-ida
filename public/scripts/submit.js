@@ -9,7 +9,7 @@ function submitNewPost(postID) {
     }
 
     fetch("/update", {
-        method: "POST",
+        method: "PUT",
         headers: {
         'Content-Type': 'application/json'
         },
