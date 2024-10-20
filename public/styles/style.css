@@ -1,40 +1,88 @@
 * {
-  font-size: 25px;
+    font-size: 25px;
 }
 
 body {
-  font-family: "VT323", monospace;
-  background-color: grey;
+    font-family: "VT323", monospace;
+    background-color: grey;
 }
 
 
 .title-text {
-  color: whitesmoke;
-  font-size: 80px;
+    color: whitesmoke;
+    font-size: 80px;
 }
 
 .subtitle-text {
-  font-size: 35px;
+    font-size: 35px;
 }
 
 .postboard {
-  background-color: white;
-  height: 120px;
-  border-radius: 5px;
-  font-size: 30px;
-  color: rgb(96, 137, 214);
+    background-color: white;
+    height: 120px;
+    border-radius: 5px;
+    font-size: 30px;
+    color: rgb(96, 137, 214);
 }
 
-a:hover{
-  filter:brightness(95%);
+a:hover {
+    filter: brightness(95%);
 }
 
 [contenteditable] {
-  outline: 0px solid transparent;
+    outline: 0px solid transparent;
 }
 
 .surround {
-  background-color: white;
-  border-radius: 100%;
-  border: 4px white solid;
+    background-color: white;
+    border-radius: 100%;
+    border: 4px white solid;
 }
+
+.clickable-icon {
+    color: white;
+    transition: all 0.2s ease-in-out;
+    padding: 5px;
+    border-radius: 15%;
+}
+
+.clickable-icon:hover {
+    cursor: pointer;
+    transform: scale(1.3);
+}
+
+.clickable-icon-large {
+    color: white;
+    transition: all 0.2s ease-in-out;
+    padding: 5px 20px;
+    border-radius: 15%;
+    margin: auto 15px;
+    font-size: 30px;
+}
+
+.clickable-icon-large:hover {
+    cursor: pointer;
+    transform: scale(1.3);
+}
+
+.edit {
+    background-color: green;
+    border: 4px green solid;
+
+}
+
+.delete {
+    background-color: firebrick;
+    border: 4px firebrick solid;
+}
+
+.logout {
+    background-color: firebrick;
+    border: 4px firebrick solid;
+}
+
+.submit {
+    background-color: dodgerblue;
+    border: 4px dodgerblue solid;
+}
+
