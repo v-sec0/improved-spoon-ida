@@ -2,27 +2,28 @@
     font-size: 25px;
 }
 
+:root {
+    --green: #0B6E4F;
+    --blue: #4B88A2;
+    --title-text: #D7D9CE;
+    --red: #C03221;
+    --background: #2A324B;
+}
+
 body {
     font-family: "VT323", monospace;
-    background-color: grey;
+    background-color: var(--background);
 }
 
 
 .title-text {
-    color: whitesmoke;
-    font-size: 80px;
+    color: var(--title-text);
+    font-size: 100px;
 }
 
 .subtitle-text {
-    font-size: 35px;
-}
-
-.postboard {
-    background-color: white;
-    height: 120px;
-    border-radius: 5px;
-    font-size: 30px;
-    color: rgb(96, 137, 214);
+    font-size: 50px;
+    color: var(--title-text);
 }
 
 a:hover {
@@ -66,24 +67,24 @@ a:hover {
 }
 
 .edit {
-    background-color: green;
-    border: 4px green solid;
+    background-color: var(--green);
+    border: 4px var(--green) solid;
 
 }
 
 .delete {
-    background-color: firebrick;
-    border: 4px firebrick solid;
+    background-color: var(--red);
+    border: 4px var(--red) solid;
 }
 
 .logout {
-    background-color: firebrick;
-    border: 4px firebrick solid;
+    background-color: var(--red);
+    border: 4px var(--red) solid;
 }
 
 .submit {
-    background-color: dodgerblue;
-    border: 4px dodgerblue solid;
+    background-color: var(--blue);
+    border: 4px var(--blue) solid;
 }
 
 textarea {
@@ -93,4 +94,11 @@ textarea {
     border-radius: 5px;
     overflow: auto;
     width: 100%;
+}
+
+.card {
+!important;
+    background-color: var(--title-text);
+    border: 3px solid var(--title-text);
+    border-radius: 15px;
 }
