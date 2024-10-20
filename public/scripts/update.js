@@ -3,8 +3,8 @@ function updatePost(postId, mode) {
     // Defining variables
     let postcardHeader = $(`#postheader-${postId}`);
     let postcard = $(`#postcard-${postId}`);
-    let updClickable = $(`#updClickable`)
-    let delClickable = $(`#delClickable`)
+    let updClickable = $(`#updClickable-${postId}`);
+    let delClickable = $(`#delClickable-${postId}`);
     let post = $(`.${postId}`)
 
     // Evaluating the mode argument

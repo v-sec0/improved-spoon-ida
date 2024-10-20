@@ -46,16 +46,16 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <form class="needs-validation" action="/insert" method="post" novalidate>
-                            <div class="modal-header">
+                            <div class="modal-header border-0">
                                 <h5 class="modal-title">What's your post?</h5>
                             </div>
                             <div class="modal-body row">
                                 <div class="mb-3 col">
-                                    <textarea class="form-control" name="post" rows="3" required></textarea>
+                                    <textarea name="post" rows="3" required></textarea>
                                     <div class="invalid-feedback">YOU MUST SAY SOMETHING!</div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer border-0">
                                 <button type="submit" id="submitButton"
                                         class="material-symbols-outlined clickable-icon submit">
                                     post_add
@@ -74,7 +74,8 @@
             <% mongoResults.forEach(result=> { %>
                 <div class="col-md-6">
                     <div class="card mb-3" data-aos="fade-up" data-bs-theme="light" id="postcard-<%= result._id %>">
-                        <div class="card-header" id="postheader-<%= result._id %>">Post ID: <%= result._id %></div>
+                        <div class="card-header border-0" id="postheader-<%= result._id %>">Post
+                            ID: <%= result._id %></div>
                         <div class="card-body">
                             <blockquote class="blockquote mb-0">
                                 <p contenteditable="false" id="post-<%= result._id %>"
@@ -84,9 +85,11 @@
                                     <%= result.username %>
                                 </footer>
                             </blockquote>
-                            <span id="updClickable" class="material-symbols-outlined clickable-icon edit"
+                            <span id="updClickable-<%= result._id %>"
+                                  class="material-symbols-outlined clickable-icon edit"
                                   onclick="updatePost('<%= result._id %>', 'edit')">edit_note</span>
-                            <span id="delClickable" class="material-symbols-outlined clickable-icon delete"
+                            <span id="delClickable-<%= result._id %>"
+                                  class="material-symbols-outlined clickable-icon delete"
                                   onclick="deletePost('<%= result._id %>')">delete</span>
                         </div>
                     </div>

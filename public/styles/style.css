@@ -86,3 +86,11 @@ a:hover {
     border: 4px dodgerblue solid;
 }
 
+textarea {
+    outline: none;
+    resize: none;
+    border: 3px solid #888;
+    border-radius: 5px;
+    overflow: auto;
+    width: 100%;
+}
