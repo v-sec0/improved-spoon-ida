@@ -1,26 +1,20 @@
 {
+  "name": "improved-spoon-ida",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "private": true,
   "dependencies": {
-    "aos": "^2.3.4",
     "body-parser": "^1.20.3",
     "dompurify": "^3.1.7",
     "dotenv": "^16.4.5",
-    "ejs": "^3.1.10",
-    "express": "^4.19.2",
-    "express-session": "^1.18.0",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
     "jsdom": "^25.0.1",
-    "mongodb": "^6.8.0",
-    "nodemon": "^3.1.4",
-    "passport": "^0.7.0",
-    "passport-google-oauth2": "^0.2.0"
-  },
-  "name": "improved-spoon-ida",
-  "version": "1.0.0",
-  "description": "Nothing to see here, stranger.",
-  "main": "app.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "mongodb": "^6.9.0",
+    "passport": "^0.7.0"
+  }
 }
