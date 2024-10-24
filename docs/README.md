@@ -6,7 +6,7 @@
 </h1>
 <div align="center">
   <img src="https://img.shields.io/github/last-commit/v-sec0/improved-spoon-ida"/>
-  <img src="https://img.shields.io/github/issues-closed/v-sec0/improved-spoon-ida.svg"
+  <img src="https://img.shields.io/github/issues-closed/v-sec0/improved-spoon-ida.svg"/>
 </div>
 <p align="center">
   a simple postboard web application that let's users post messages.
